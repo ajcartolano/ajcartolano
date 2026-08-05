@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Filmmaker / Actor / Writer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Monoton&family=VT323&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#170b2e;
+    --void-2:#0e0620;
+    --hotpink:#ff2e9a;
+    --cyan:#00e5ff;
+    --orange:#ff6b35;
+    --yellow:#ffd23f;
+    --chrome:#e8e6f0;
+    --grid-line: rgba(0,229,255,0.35);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--void);
+    color:var(--chrome);
+    font-family:'Space Grotesk',sans-serif;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--hotpink);color:var(--void-2);}
+
+  /* Scanline overlay */
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    pointer-events:none;
+    z-index:999;
+    background:repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.025) 0px,
+      rgba(255,255,255,0.025) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    mix-blend-mode:overlay;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important;}
+  }
+
+  a{color:inherit;text-decoration:none;}
+  :focus-visible{outline:3px solid var(--yellow); outline-offset:3px;}
+
+  .eyebrow{
+    font-family:'VT323',monospace;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color:var(--cyan);
+    font-size:1.05rem;
+  }
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:100;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:1.1rem 6vw;
+    background:rgba(14,6,32,0.85);
+    backdrop-filter:blur(6px);
+    border-bottom:2px solid var(--hotpink);
+  }
+  .logo{
+    font-family:'VT323',monospace;
+    font-size:1.4rem;
+    color:var(--yellow);
+    letter-spacing:0.1em;
+  }
+  .navlinks{display:flex;gap:2rem;font-size:0.95rem;font-weight:500;}
+  .navlinks a{position:relative;padding:2px 0;}
+  .navlinks a:hover{color:var(--hotpink);}
+  @media (max-width:720px){ .navlinks{display:none;} }
+
+  /* HERO */
+  .hero{
+    position:relative;
+    min-height:92vh;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;
+    padding:2rem 6vw;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse at 50% 30%, rgba(255,46,154,0.25), transparent 60%),
+      linear-gradient(var(--void-2), var(--void));
+  }
+  .sun{
+    position:absolute;
+    bottom:18%;
+    width:min(420px,70vw);
+    height:min(420px,70vw);
+    border-radius:50%;
+    background:linear-gradient(to top, var(--yellow) 0%, var(--orange) 45%, var(--hotpink) 100%);
+    box-shadow:0 0 120px rgba(255,107,53,0.55);
+    overflow:hidden;
+    z-index:0;
+  }
+  .sun::before{
+    content:"";
+    position:absolute;inset:0;
+    background:repeating-linear-gradient(
+      to bottom,
+      transparent 0 8%,
+      var(--void-2) 8% 10%
+    );
+    opacity:0.9;
+  }
+  .horizon-grid{
+    position:absolute;
+    bottom:0;left:0;right:0;
+    height:42%;
+    background:var(--void-2);
+    z-index:1;
+    perspective:300px;
+    overflow:hidden;
+    border-top:2px solid var(--cyan);
+  }
+  .horizon-grid::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size:60px 40px;
+    transform:rotateX(60deg) translateY(-20px);
+    transform-origin:top;
+    animation:gridmove 3.5s linear infinite;
+  }
+  @keyframes gridmove{
+    from{background-position:0 0, 0 0;}
+    to{background-position:0 40px, 0 0;}
+  }
+  .hero-content{position:relative;z-index:2;}
+  h1.title{
+    font-family:'Monoton',cursive;
+    font-weight:400;
+    font-size:clamp(2.4rem,8vw,5.5rem);
+    line-height:1.05;
+    color:var(--chrome);
+    text-shadow:
+      0 0 8px var(--cyan),
+      0 0 22px var(--hotpink),
+      0 0 46px var(--hotpink);
+    letter-spacing:0.03em;
+  }
+  .role-line{
+    margin-top:1.1rem;
+    font-family:'VT323',monospace;
+    font-size:clamp(1.2rem,3vw,1.7rem);
+    color:var(--yellow);
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+  }
+  .hero-sub{
+    margin-top:1.3rem;
+    max-width:560px;
+    color:#cfc9e6;
+    font-size:1.05rem;
+    margin-inline:auto;
+  }
+  .hero-ctas{
+    margin-top:2.2rem;
+    display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;
+  }
+  .btn{
+    font-family:'VT323',monospace;
+    font-size:1.15rem;
+    letter-spacing:0.1em;
+    padding:0.7rem 1.6rem;
+    border-radius:2px;
+    border:2px solid var(--cyan);
+    color:var(--cyan);
+    background:transparent;
+    cursor:pointer;
+    transition:transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+  }
+  .btn:hover{background:var(--cyan);color:var(--void-2);transform:translateY(-2px);}
+  .btn.solid{
+    background:var(--hotpink);border-color:var(--hotpink);color:var(--void-2);
+  }
+  .btn.solid:hover{background:var(--yellow);border-color:var(--yellow);}
+
+  section{padding:6.5rem 6vw;position:relative;}
+  .section-head{max-width:720px;margin-bottom:3rem;}
+  h2.section-title{
+    font-family:'Monoton',cursive;
+    font-weight:400;
+    font-size:clamp(1.8rem,4.5vw,2.8rem);
+    color:var(--hotpink);
+    text-shadow:0 0 18px rgba(255,46,154,0.5);
+    margin-top:0.4rem;
+  }
+
+  /* ABOUT */
+  .about{
+    background:var(--void-2);
+    display:grid;
+    grid-template-columns:1fr 1.3fr;
+    gap:3rem;
+    align-items:center;
+  }
+  @media (max-width:800px){ .about{grid-template-columns:1fr;} }
+  .polaroid{
+    background:#fff;
+    padding:14px 14px 50px 14px;
+    border-radius:2px;
+    transform:rotate(-4deg);
+    box-shadow:0 18px 40px rgba(0,0,0,0.5);
+    max-width:320px;
+    margin-inline:auto;
+  }
+  .polaroid .frame{
+    aspect-ratio:4/5;
+    background:linear-gradient(135deg,#3a1c5e,#ff2e9a 60%,#ffd23f);
+    display:flex;align-items:center;justify-content:center;
+    color:rgba(255,255,255,0.6);
+    font-family:'VT323',monospace;
+    font-size:1.1rem;
+  }
+  .polaroid figcaption{
+    font-family:'VT323',monospace;
+    color:#222;
+    text-align:center;
+    margin-top:10px;
+    font-size:1.1rem;
+  }
+  .about p{color:#cfc9e6;line-height:1.7;margin-bottom:1rem;}
+
+  /* PROJECTS */
+  .projects-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:2rem;
+  }
+  .tape{
+    background:linear-gradient(160deg,#241143,#170b2e);
+    border:2px solid var(--cyan);
+    border-radius:6px;
+    padding:1.4rem;
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .tape:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(0,229,255,0.25);}
+  .tape .reel-window{
+    height:120px;
+    border-radius:4px;
+    margin-bottom:1rem;
+    background:repeating-linear-gradient(45deg,#0e0620,#0e0620 10px,#1a0e33 10px,#1a0e33 20px);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'VT323',monospace;
+    color:var(--yellow);
+    letter-spacing:0.1em;
+  }
+  .tape h3{font-size:1.15rem;margin-bottom:0.4rem;color:var(--chrome);}
+  .tape .tape-meta{
+    font-family:'VT323',monospace;
+    color:var(--orange);
+    font-size:0.95rem;
+    letter-spacing:0.08em;
+    margin-bottom:0.6rem;
+  }
+  .tape p{color:#b9b3d6;font-size:0.92rem;line-height:1.5;}
+  .tape p.logline{color:var(--yellow);font-style:italic;margin-bottom:0.5rem;}
+
+  /* SKILLS */
+  .skills{background:var(--void-2);}
+  .skill-deck{display:flex;flex-direction:column;gap:1.4rem;max-width:640px;}
+  .skill-row{display:grid;grid-template-columns:140px 1fr;align-items:center;gap:1rem;}
+  .skill-row span{font-family:'VT323',monospace;font-size:1.1rem;color:var(--cyan);letter-spacing:0.05em;}
+  .skill-group{margin-bottom:2.4rem;max-width:760px;}
+  .skill-group h3{
+    font-family:'VT323',monospace;
+    font-size:1.2rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--yellow);
+    margin-bottom:1rem;
+  }
+  .chip-row{display:flex;flex-wrap:wrap;gap:0.8rem;}
+  .chip{
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.95rem;
+    font-weight:500;
+    padding:0.5rem 1.1rem;
+    border:2px solid var(--cyan);
+    border-radius:2px;
+    color:var(--chrome);
+    background:rgba(0,229,255,0.06);
+    position:relative;
+  }
+  .chip.training{border-style:dashed;color:#cfc9e6;}
+  .chip.training::after{
+    content:"IN TRAINING";
+    display:block;
+    font-family:'VT323',monospace;
+    font-size:0.65rem;
+    letter-spacing:0.1em;
+    color:var(--orange);
+    margin-top:2px;
+  }
+  .chip.proficient{border-color:var(--hotpink);background:rgba(255,46,154,0.08);}
+  .chip.proficient::after{
+    content:"PROFICIENT";
+    display:block;
+    font-family:'VT323',monospace;
+    font-size:0.65rem;
+    letter-spacing:0.1em;
+    color:var(--hotpink);
+    margin-top:2px;
+  }
+  .chip.basic::after{
+    content:"BASIC KNOWLEDGE";
+    display:block;
+    font-family:'VT323',monospace;
+    font-size:0.65rem;
+    letter-spacing:0.1em;
+    color:#8a83b0;
+    margin-top:2px;
+  }
+  .bar-track{
+    height:14px;background:#241143;border:1px solid var(--cyan);border-radius:2px;overflow:hidden;
+  }
+  .bar-fill{
+    height:100%;
+    background:repeating-linear-gradient(90deg,var(--hotpink),var(--hotpink) 6px,var(--orange) 6px,var(--orange) 12px);
+  }
+
+  /* RESUME / TIMELINE (filmstrip) */
+  .filmstrip{position:relative;max-width:760px;}
+  .filmstrip::before{
+    content:"";
+    position:absolute;left:18px;top:0;bottom:0;
+    width:4px;background:repeating-linear-gradient(to bottom,var(--chrome) 0 8px,transparent 8px 16px);
+  }
+  .frame-item{position:relative;padding-left:56px;margin-bottom:2.4rem;}
+  .frame-item::before{
+    content:"";
+    position:absolute;left:8px;top:2px;
+    width:22px;height:22px;
+    border:3px solid var(--yellow);
+    border-radius:3px;
+    background:var(--void);
+  }
+  .frame-item .yr{font-family:'VT323',monospace;color:var(--yellow);font-size:1.1rem;letter-spacing:0.1em;}
+  .frame-item h3{margin:0.2rem 0 0.3rem;color:var(--chrome);font-size:1.15rem;}
+  .frame-item p{color:#b9b3d6;font-size:0.95rem;line-height:1.5;}
+
+  /* TESTIMONIALS */
+  .testimonials{background:var(--void-2);}
+  .quote-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.8rem;}
+  .vhs-card{
+    border:2px dashed var(--orange);
+    padding:1.6rem;
+    position:relative;
+    background:rgba(255,107,53,0.04);
+  }
+  .vhs-card::before{
+    content:"● REC";
+    position:absolute;top:-14px;left:14px;
+    background:var(--void-2);
+    padding:0 8px;
+    font-family:'VT323',monospace;
+    color:var(--hotpink);
+    font-size:0.95rem;
+  }
+  .vhs-card p{font-style:italic;color:#d8d3ee;line-height:1.6;margin-bottom:0.8rem;}
+  .vhs-card .who{font-family:'VT323',monospace;color:var(--cyan);letter-spacing:0.05em;}
+
+  /* CONTACT */
+  .contact{
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(0,229,255,0.15), transparent 60%),
+      var(--void);
+    text-align:center;
+  }
+  form{max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:1rem;text-align:left;}
+  label{font-family:'VT323',monospace;color:var(--cyan);letter-spacing:0.08em;font-size:1.05rem;}
+  input, textarea{
+    width:100%;padding:0.7rem 0.9rem;
+    background:#0e0620;
+    border:2px solid var(--hotpink);
+    border-radius:3px;
+    color:var(--chrome);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:0.95rem;
+  }
+  input:focus, textarea:focus{border-color:var(--cyan);}
+  textarea{resize:vertical;min-height:120px;}
+
+  footer{
+    padding:2.4rem 6vw;
+    text-align:center;
+    font-family:'VT323',monospace;
+    color:#7c74a6;
+    letter-spacing:0.08em;
+    border-top:2px solid var(--hotpink);
+    background:var(--void-2);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">ANTHONY&nbsp;CARTOLANO</div>
+  <div class="navlinks">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#skills">Skills</a>
+    <a href="#resume">Resume</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="sun" aria-hidden="true"></div>
+  <div class="horizon-grid" aria-hidden="true"></div>
+  <div class="hero-content">
+    <h1 class="title">ANTHONY CARTOLANO</h1>
+    <div class="role-line">Filmmaker · Actor · Writer</div>
+    <p class="hero-sub">Telling original stories through independent filmmaking.</p>
+    <div class="hero-ctas">
+      <a class="btn solid" href="#work">Watch the reel</a>
+      <a class="btn" href="#contact">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<section id="about" class="about">
+  <figure class="polaroid">
+    <div class="frame"><img src="anthony-street.jpeg" alt="Anthony Cartolano on a street in Detroit" style="width:100%;height:100%;object-fit:cover;"></div>
+    <figcaption>Detroit</figcaption>
+  </figure>
+  <div>
+    <p class="eyebrow">Rewind ▸ Play</p>
+    <h2 class="section-title">About</h2>
+    <p>I'm an aspiring filmmaker, screenwriter, and actor from Metro Detroit. I create independent short films, write original screenplays, and enjoy bringing stories to life both behind and in front of the camera.</p>
+    <p>This portfolio is a collection of my work as I continue learning, creating, and growing as an artist.</p>
+  </div>
+</section>
+
+<section id="work">
+  <div class="section-head">
+    <p class="eyebrow">Now Playing</p>
+    <h2 class="section-title">Projects &amp; Work</h2>
+  </div>
+  <div class="projects-grid">
+    <div class="tape">
+      <div class="reel-window" style="padding:0;overflow:hidden;">
+        <video controls preload="metadata" style="width:100%;height:100%;object-fit:cover;background:#000;">
+          <source src="i-cant-sleep.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. <a href="i-cant-sleep.mp4">Download the film</a>.
+        </video>
+      </div>
+      <h3>I Can't Sleep</h3>
+      <div class="tape-meta">DIRECTOR · WRITER · ACTOR · EDITOR · 2022</div>
+      <p class="logline">A drink, an old voicemail, and a box of memories send Chuck out into the night — he can't sleep, so he goes to find his mother.</p>
+      <p>A short film made during school — written, directed, and edited by Anthony, who also starred in the lead role.</p>
+    </div>
+    <div class="tape">
+      <div class="reel-window" style="padding:0;overflow:hidden;">
+        <video controls preload="metadata" style="width:100%;height:100%;object-fit:cover;background:#000;">
+          <source src="its-all-in-your-head.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. <a href="its-all-in-your-head.mp4">Download the film</a>.
+        </video>
+      </div>
+      <h3>It's All In Your Head</h3>
+      <div class="tape-meta">DIRECTOR · CINEMATOGRAPHER · EDITOR · ACTOR · 2024</div>
+      <p class="logline">A guy trips out in a mall, finding himself in a bizarre music video.</p>
+      <p>A short film / music video hybrid — shot, directed, and edited by Anthony, who also appears as the second character.</p>
+    </div>
+    <div class="tape">
+      <div class="reel-window" style="padding:0;overflow:hidden;">
+        <video controls preload="metadata" style="width:100%;height:100%;object-fit:cover;background:#000;">
+          <source src="forever-in-limbo.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. <a href="forever-in-limbo.mp4">Download the film</a>.
+        </video>
+      </div>
+      <h3>Forever In Limbo</h3>
+      <div class="tape-meta">DIRECTOR · WRITER · CINEMATOGRAPHER · EDITOR · 2022</div>
+      <p class="logline">A murderer can't get what he did out of his head.</p>
+      <p>A short film written, shot, directed, and edited by Anthony.</p>
+    </div>
+    <div class="tape">
+      <div class="reel-window" style="padding:0;overflow:hidden;">
+        <video controls preload="metadata" style="width:100%;height:100%;object-fit:cover;background:#000;">
+          <source src="voice-of-cynicism.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. <a href="voice-of-cynicism.mp4">Download the film</a>.
+        </video>
+      </div>
+      <h3>Voice of Cynicism</h3>
+      <div class="tape-meta">DIRECTOR · WRITER · CINEMATOGRAPHER · EDITOR · VOICE · 2023</div>
+      <p class="logline">A man and his conscience argue in the dark over one question: does his neighbor deserve to live?</p>
+      <p>Written, directed, shot, and edited by Anthony, who also voices the main character's inner cynical voice.</p>
+    </div>
+    <div class="tape">
+      <div class="reel-window" style="padding:0;overflow:hidden;">
+        <video controls preload="metadata" style="width:100%;height:100%;object-fit:cover;background:#000;">
+          <source src="the-end-of-lakeside-mall.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. <a href="the-end-of-lakeside-mall.mp4">Download the film</a>.
+        </video>
+      </div>
+      <h3>The End of Lakeside Mall</h3>
+      <div class="tape-meta">DIRECTOR · WRITER · CINEMATOGRAPHER · EDITOR · NARRATOR · 2024</div>
+      <p class="logline">When most malls become obsolete, what happens to Lakeside?</p>
+      <p>A mini-documentary on the decline of Lakeside Mall in Michigan — recorded, directed, edited, written, and narrated by Anthony.</p>
+    </div>
+    <div class="tape">
+      <div class="reel-window" style="padding:0;overflow:hidden;">
+        <video controls preload="metadata" style="width:100%;height:100%;object-fit:cover;background:#000;">
+          <source src="deadly-invitation.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. <a href="deadly-invitation.mp4">Download the film</a>.
+        </video>
+      </div>
+      <h3>Deadly Invitation: A Hitman's Tale</h3>
+      <div class="tape-meta">DIRECTOR · WRITER · CINEMATOGRAPHER · EDITOR · ACTOR · 2024</div>
+      <p class="logline">A vial of poison changes hands, an invitation is made, and a glass is raised one last time.</p>
+      <p>A college micro-short project — three connected 10-second shorts, written, directed, shot, and edited by Anthony, who also appears in the second and third parts.</p>
+    </div>
+    <div class="tape">
+      <div class="reel-window" style="padding:0;overflow:hidden;">
+        <video controls preload="metadata" style="width:100%;height:100%;object-fit:cover;background:#000;">
+          <source src="the-goon.mp4" type="video/mp4">
+          Your browser doesn't support embedded video. <a href="the-goon.mp4">Download the film</a>.
+        </video>
+      </div>
+      <h3>The Goon</h3>
+      <div class="tape-meta">DIRECTOR · WRITER · CINEMATOGRAPHER · EDITOR · 2024</div>
+      <p class="logline">A petty thief goes for a criminal job interview.</p>
+      <p>A short film shot, directed, written, and edited by Anthony.</p>
+    </div>
+  </div>
+</section>
+
+<section id="skills" class="skills">
+  <div class="section-head">
+    <p class="eyebrow">Mix Levels</p>
+    <h2 class="section-title">Skills</h2>
+  </div>
+  <div class="skill-group">
+    <h3>Core Skills</h3>
+    <div class="chip-row">
+      <span class="chip">Directing</span>
+      <span class="chip">Screenwriting</span>
+      <span class="chip">Storyboarding</span>
+      <span class="chip">Video Editing</span>
+      <span class="chip">Cinematography</span>
+      <span class="chip training">Acting</span>
+    </div>
+  </div>
+  <div class="skill-group">
+    <h3>Software</h3>
+    <div class="chip-row">
+      <span class="chip proficient">Adobe Premiere Pro</span>
+      <span class="chip basic">After Effects</span>
+      <span class="chip basic">Photoshop</span>
+      <span class="chip">Final Draft</span>
+    </div>
+  </div>
+</section>
+
+<section id="resume">
+  <div class="section-head">
+    <p class="eyebrow">Frame by Frame</p>
+    <h2 class="section-title">Resume / Experience</h2>
+  </div>
+  <div class="filmstrip">
+    <div class="frame-item">
+      <div class="yr">2025 — PRESENT</div>
+      <h3>Independent Filmmaker &amp; Acting Student</h3>
+      <p>Continuing to create short films while taking acting classes.</p>
+    </div>
+    <div class="frame-item">
+      <div class="yr">2022 — 2024</div>
+      <h3>Film School, Oakland University</h3>
+      <p>Studied filmmaking — directing, writing, cinematography, and editing.</p>
+    </div>
+    <div class="frame-item">
+      <div class="yr">2021</div>
+      <h3>Logo Designer, Somerset Hardwood Floor Care</h3>
+      <p>Designed the company logo.</p>
+      <img src="shfc-logo.png" alt="Somerset Hardwood Floor Care logo, designed by Anthony" style="max-width:180px;margin-top:0.6rem;border-radius:4px;">
+    </div>
+    <div class="frame-item">
+      <div class="yr">2020 — 2021</div>
+      <h3>Studied at Macomb Community College</h3>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="section-head" style="margin-inline:auto;">
+    <p class="eyebrow">Roll Camera</p>
+    <h2 class="section-title">Get in Touch</h2>
+  </div>
+  <form onsubmit="event.preventDefault(); alert('This is a demo form — connect it to an email service or form backend to make it live.');">
+    <div>
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" required>
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required>
+    </div>
+    <div>
+      <label for="message">Message</label>
+      <textarea id="message" name="message" required></textarea>
+    </div>
+    <button class="btn solid" type="submit" style="align-self:flex-start;">Send it</button>
+  </form>
+</section>
+
+<footer>
+  © 2026 Anthony Cartolano — Filmmaker · Actor · Writer
+</footer>
+
+</body>
+</html>
