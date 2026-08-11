@@ -379,6 +379,23 @@
     text-align:center;
   }
   form{max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:1rem;text-align:left;}
+  .social-links{
+    display:flex;justify-content:center;gap:1.2rem;
+    margin-bottom:2.2rem;
+    flex-wrap:wrap;
+  }
+  .social-links a{
+    font-family:'VT323',monospace;
+    font-size:1.15rem;
+    letter-spacing:0.08em;
+    padding:0.6rem 1.3rem;
+    border:2px solid var(--hotpink);
+    border-radius:2px;
+    color:var(--chrome);
+    background:rgba(255,46,154,0.06);
+    transition:background 0.15s ease, color 0.15s ease;
+  }
+  .social-links a:hover{background:var(--hotpink);color:var(--void-2);}
   label{font-family:'VT323',monospace;color:var(--cyan);letter-spacing:0.08em;font-size:1.05rem;}
   input, textarea{
     width:100%;padding:0.7rem 0.9rem;
@@ -597,6 +614,10 @@
     <p class="eyebrow">Roll Camera</p>
     <h2 class="section-title">Get in Touch</h2>
   </div>
+  <div class="social-links">
+    <a href="mailto:ajdalizard@gmail.com">✉ Email</a>
+    <a href="https://www.youtube.com/@Ajthelizard1100" target="_blank" rel="noopener">▶ YouTube</a>
+  </div>
   <form onsubmit="event.preventDefault(); alert('This is a demo form — connect it to an email service or form backend to make it live.');">
     <div>
       <label for="name">Name</label>
@@ -616,6 +637,10 @@
 
 <footer>
   © 2026 Anthony Cartolano — Filmmaker · Actor · Writer
+  <br>
+  <a href="mailto:ajdalizard@gmail.com" style="color:var(--cyan);">Email</a>
+  ·
+  <a href="https://www.youtube.com/@Ajthelizard1100" target="_blank" rel="noopener" style="color:var(--cyan);">YouTube</a>
 </footer>
 
 </body>
