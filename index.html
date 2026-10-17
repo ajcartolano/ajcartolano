@@ -233,6 +233,40 @@
   .about p{color:#cfc9e6;line-height:1.7;margin-bottom:1rem;}
 
   /* PROJECTS */
+  /* ACTING */
+  .acting{
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(255,46,154,0.18), transparent 55%),
+      var(--void);
+  }
+  .spotlight{
+    display:grid;
+    grid-template-columns:1.5fr 1fr;
+    gap:2.5rem;
+    align-items:center;
+    max-width:1000px;
+  }
+  @media (max-width:800px){ .spotlight{grid-template-columns:1fr;} }
+  .spotlight .screen{
+    border:3px solid var(--hotpink);
+    border-radius:6px;
+    box-shadow:0 0 40px rgba(255,46,154,0.35);
+    overflow:hidden;
+    background:#000;
+  }
+  .spotlight video{display:block;width:100%;height:auto;background:#000;}
+  .spotlight h3{
+    font-size:1.6rem;
+    color:var(--chrome);
+    margin:0.3rem 0 0.5rem;
+  }
+  .spotlight .tape-meta{
+    font-family:'VT323',monospace;
+    color:var(--orange);
+    letter-spacing:0.08em;
+    margin-bottom:0.8rem;
+  }
+  .spotlight p{color:#cfc9e6;line-height:1.6;}
   .projects-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
@@ -427,6 +461,7 @@
   <div class="navlinks">
     <a href="#about">About</a>
     <a href="#work">Work</a>
+    <a href="#acting">Acting</a>
     <a href="#skills">Skills</a>
     <a href="#resume">Resume</a>
     <a href="#contact">Contact</a>
@@ -549,6 +584,27 @@
       <div class="tape-meta">DIRECTOR · WRITER · CINEMATOGRAPHER · EDITOR · 2024</div>
       <p class="logline">A petty thief goes for a criminal job interview.</p>
       <p>A short film shot, directed, written, and edited by Anthony.</p>
+    </div>
+  </div>
+</section>
+
+<section id="acting" class="acting">
+  <div class="section-head">
+    <p class="eyebrow">In Front of the Camera</p>
+    <h2 class="section-title">Acting</h2>
+  </div>
+  <div class="spotlight">
+    <div class="screen">
+      <video controls preload="metadata">
+        <source src="jd-monologue.mp4" type="video/mp4">
+        Your browser doesn't support embedded video. <a href="jd-monologue.mp4">Download the monologue</a>.
+      </video>
+    </div>
+    <div>
+      <p class="eyebrow">Monologue</p>
+      <h3>JD, from Heathers</h3>
+      <div class="tape-meta">ACTOR · 2026</div>
+      <p>A monologue performed as JD from Heathers, recorded in an acting class.</p>
     </div>
   </div>
 </section>
