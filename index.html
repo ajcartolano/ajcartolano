@@ -3,7 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio — Filmmaker / Actor / Writer</title>
+<title>Anthony Cartolano (AJ) — Actor, Filmmaker &amp; Writer | Michigan</title>
+<meta name="description" content="Anthony “AJ” Cartolano is a Michigan-based actor pursuing film and television. Watch his acting-class monologue and short films, and get in touch.">
+<meta property="og:title" content="Anthony Cartolano — Actor · Filmmaker · Writer">
+<meta property="og:description" content="Michigan-based actor pursuing film and television. Monologue, short films, and contact.">
+<meta property="og:image" content="jd-poster.jpg">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Monoton&family=VT323&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -75,7 +80,7 @@
   .navlinks{display:flex;gap:2rem;font-size:0.95rem;font-weight:500;}
   .navlinks a{position:relative;padding:2px 0;}
   .navlinks a:hover{color:var(--hotpink);}
-  @media (max-width:720px){ .navlinks{display:none;} }
+  @media (max-width:720px){ nav{flex-direction:column;gap:0.5rem;padding:0.8rem 4vw;} .navlinks{gap:1rem;font-size:0.85rem;flex-wrap:wrap;justify-content:center;} }
 
   /* HERO */
   .hero{
@@ -281,7 +286,7 @@
   }
   .tape:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(0,229,255,0.25);}
   .tape .reel-window{
-    height:120px;
+    aspect-ratio:16/9;
     border-radius:4px;
     margin-bottom:1rem;
     background:repeating-linear-gradient(45deg,#0e0620,#0e0620 10px,#1a0e33 10px,#1a0e33 20px);
@@ -459,9 +464,9 @@
 <nav>
   <div class="logo">ANTHONY&nbsp;CARTOLANO</div>
   <div class="navlinks">
+    <a href="#acting">Acting</a>
     <a href="#about">About</a>
     <a href="#work">Work</a>
-    <a href="#acting">Acting</a>
     <a href="#skills">Skills</a>
     <a href="#resume">Resume</a>
     <a href="#contact">Contact</a>
@@ -473,14 +478,36 @@
   <div class="horizon-grid" aria-hidden="true"></div>
   <div class="hero-content">
     <h1 class="title">ANTHONY CARTOLANO</h1>
-    <div class="role-line">Filmmaker · Actor · Writer</div>
-    <p class="hero-sub">Telling original stories through independent filmmaking.</p>
+    <div class="role-line">Actor · Filmmaker · Writer</div>
+    <p class="hero-sub">Michigan-based actor pursuing film and television.</p>
     <div class="hero-ctas">
-      <a class="btn solid" href="#work">Watch the reel</a>
+      <a class="btn solid" href="#acting">Watch Monologue</a>
       <a class="btn" href="#contact">Get in touch</a>
     </div>
   </div>
 </header>
+
+<section id="acting" class="acting">
+  <div class="section-head">
+    <p class="eyebrow">In Front of the Camera</p>
+    <h2 class="section-title">Acting</h2>
+  </div>
+  <div class="spotlight">
+    <div class="screen">
+      <video controls preload="metadata" poster="jd-poster.jpg">
+        <source src="jd-monologue.mp4" type="video/mp4">
+        Your browser doesn't support embedded video. <a href="jd-monologue.mp4">Download the monologue</a>.
+      </video>
+    </div>
+    <div>
+      <p class="eyebrow">Acting-Class Monologue</p>
+      <h3>JD, from Heathers</h3>
+      <div class="tape-meta">ACTING CLASS · 2026</div>
+      <p>Monologue performed as JD from Heathers, recorded during an acting class. Currently training in acting.</p>
+    </div>
+  </div>
+  <!-- TO ADD A NEW PERFORMANCE: copy the whole <div class="spotlight">…</div> block above, paste it below, and change the video file, poster, title, and description. -->
+</section>
 
 <section id="about" class="about">
   <figure class="polaroid">
@@ -503,7 +530,7 @@
   <div class="projects-grid">
     <div class="tape">
       <div class="reel-window" style="padding:0;overflow:hidden;">
-        <video controls preload="metadata" style="width:100%;height:100%;object-fit:cover;background:#000;">
+        <video controls preload="metadata" style="width:100%;height:100%;object-fit:contain;background:#000;">
           <source src="i-cant-sleep.mp4" type="video/mp4">
           Your browser doesn't support embedded video. <a href="i-cant-sleep.mp4">Download the film</a>.
         </video>
@@ -515,7 +542,7 @@
     </div>
     <div class="tape">
       <div class="reel-window" style="padding:0;overflow:hidden;">
-        <video controls preload="metadata" style="width:100%;height:100%;object-fit:cover;background:#000;">
+        <video controls preload="metadata" style="width:100%;height:100%;object-fit:contain;background:#000;">
           <source src="its-all-in-your-head.mp4" type="video/mp4">
           Your browser doesn't support embedded video. <a href="its-all-in-your-head.mp4">Download the film</a>.
         </video>
@@ -527,7 +554,7 @@
     </div>
     <div class="tape">
       <div class="reel-window" style="padding:0;overflow:hidden;">
-        <video controls preload="metadata" style="width:100%;height:100%;object-fit:cover;background:#000;">
+        <video controls preload="metadata" style="width:100%;height:100%;object-fit:contain;background:#000;">
           <source src="forever-in-limbo.mp4" type="video/mp4">
           Your browser doesn't support embedded video. <a href="forever-in-limbo.mp4">Download the film</a>.
         </video>
@@ -539,7 +566,7 @@
     </div>
     <div class="tape">
       <div class="reel-window" style="padding:0;overflow:hidden;">
-        <video controls preload="metadata" style="width:100%;height:100%;object-fit:cover;background:#000;">
+        <video controls preload="metadata" style="width:100%;height:100%;object-fit:contain;background:#000;">
           <source src="voice-of-cynicism.mp4" type="video/mp4">
           Your browser doesn't support embedded video. <a href="voice-of-cynicism.mp4">Download the film</a>.
         </video>
@@ -551,7 +578,7 @@
     </div>
     <div class="tape">
       <div class="reel-window" style="padding:0;overflow:hidden;">
-        <video controls preload="metadata" style="width:100%;height:100%;object-fit:cover;background:#000;">
+        <video controls preload="metadata" style="width:100%;height:100%;object-fit:contain;background:#000;">
           <source src="the-end-of-lakeside-mall.mp4" type="video/mp4">
           Your browser doesn't support embedded video. <a href="the-end-of-lakeside-mall.mp4">Download the film</a>.
         </video>
@@ -563,7 +590,7 @@
     </div>
     <div class="tape">
       <div class="reel-window" style="padding:0;overflow:hidden;">
-        <video controls preload="metadata" style="width:100%;height:100%;object-fit:cover;background:#000;">
+        <video controls preload="metadata" style="width:100%;height:100%;object-fit:contain;background:#000;">
           <source src="deadly-invitation.mp4" type="video/mp4">
           Your browser doesn't support embedded video. <a href="deadly-invitation.mp4">Download the film</a>.
         </video>
@@ -575,7 +602,7 @@
     </div>
     <div class="tape">
       <div class="reel-window" style="padding:0;overflow:hidden;">
-        <video controls preload="metadata" style="width:100%;height:100%;object-fit:cover;background:#000;">
+        <video controls preload="metadata" style="width:100%;height:100%;object-fit:contain;background:#000;">
           <source src="the-goon.mp4" type="video/mp4">
           Your browser doesn't support embedded video. <a href="the-goon.mp4">Download the film</a>.
         </video>
@@ -584,27 +611,6 @@
       <div class="tape-meta">DIRECTOR · WRITER · CINEMATOGRAPHER · EDITOR · 2024</div>
       <p class="logline">A petty thief goes for a criminal job interview.</p>
       <p>A short film shot, directed, written, and edited by Anthony.</p>
-    </div>
-  </div>
-</section>
-
-<section id="acting" class="acting">
-  <div class="section-head">
-    <p class="eyebrow">In Front of the Camera</p>
-    <h2 class="section-title">Acting</h2>
-  </div>
-  <div class="spotlight">
-    <div class="screen">
-      <video controls preload="metadata">
-        <source src="jd-monologue.mp4" type="video/mp4">
-        Your browser doesn't support embedded video. <a href="jd-monologue.mp4">Download the monologue</a>.
-      </video>
-    </div>
-    <div>
-      <p class="eyebrow">Monologue</p>
-      <h3>JD, from Heathers</h3>
-      <div class="tape-meta">ACTOR · 2026</div>
-      <p>A monologue performed as JD from Heathers, recorded in an acting class.</p>
     </div>
   </div>
 </section>
@@ -671,10 +677,10 @@
     <h2 class="section-title">Get in Touch</h2>
   </div>
   <div class="social-links">
-    <a href="mailto:ajdalizard@gmail.com">✉ Email</a>
+    <a href="mailto:ajcartolano@gmail.com">✉ Email</a>
     <a href="https://www.youtube.com/@Ajthelizard1100" target="_blank" rel="noopener">▶ YouTube</a>
   </div>
-  <form onsubmit="event.preventDefault(); alert('This is a demo form — connect it to an email service or form backend to make it live.');">
+  <form onsubmit="event.preventDefault(); var f=this; location.href='mailto:ajcartolano@gmail.com?subject='+encodeURIComponent('Inquiry from '+f.name.value)+'&body='+encodeURIComponent(f.message.value+'\n\n'+f.name.value+' ('+f.email.value+')');">
     <div>
       <label for="name">Name</label>
       <input id="name" name="name" type="text" required>
@@ -687,14 +693,14 @@
       <label for="message">Message</label>
       <textarea id="message" name="message" required></textarea>
     </div>
-    <button class="btn solid" type="submit" style="align-self:flex-start;">Send it</button>
+    <button class="btn solid" type="submit" style="align-self:flex-start;">Email Me</button>
   </form>
 </section>
 
 <footer>
-  © 2026 Anthony Cartolano — Filmmaker · Actor · Writer
+  © 2026 Anthony Cartolano — Actor · Filmmaker · Writer
   <br>
-  <a href="mailto:ajdalizard@gmail.com" style="color:var(--cyan);">Email</a>
+  <a href="mailto:ajcartolano@gmail.com" style="color:var(--cyan);">Email</a>
   ·
   <a href="https://www.youtube.com/@Ajthelizard1100" target="_blank" rel="noopener" style="color:var(--cyan);">YouTube</a>
 </footer>
